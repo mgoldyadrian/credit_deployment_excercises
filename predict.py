@@ -21,6 +21,18 @@ import numpy as np
 #   'cb_person_cred_hist_length': 3
 # }
 
+features_list =['person_age',
+  'person_income',
+  'person_home_ownership',
+  'person_emp_length',
+  'loan_intent',
+  'loan_grade',
+  'loan_amnt',
+  'loan_int_rate',
+  'loan_percent_income',
+  'cb_person_default_on_file',
+  'cb_person_cred_hist_length']
+
 class CustomUnpickler(pickle.Unpickler):
     def find_class(self, module, name):
         try:
@@ -39,10 +51,11 @@ def formating_data(raw_input):
     # pandas dataframe
     # urutan colomn
     raw_input = pd.DataFrame.from_dict(raw_input, orient="index").T.replace({
-        None: np.nan,
-        "null":np.nan,
-        "" : np.nan
+        None: 0,
+        "null":0,
+        "" : 0
     })
+    features = features_list
     return raw_input
 
 def preprocess_data(raw_input):
