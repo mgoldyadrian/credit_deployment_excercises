@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <title>Credit Scoring Calculator</title>
+  </head>
+  <body>
+    <div class="container main">
+  <div class="jumbotron" id="holder">
+      <a href=""><img class="logo" src="../static/card.png" alt=""></a>
+    <h1 class='main_heading'>Credit Scoring Calculator </h1>
+    <br>
+  <!--- Start From Here--->
+    <form class="form-horizontal" action="/result_prediction" method="post">
+      <div class="form-group">
+        <label class="control-label col-sm-2"  for="person_age">Age</label>
+        <div class="col-sm-10">
+          <input  type="number" class="form-control" id="person_age" min="0" max="100" name="person_age" placeholder=" Enter Your Age" onkeydown="return event.key != 'Enter';" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Annual Income</label>
+        <div class="col-sm-10">
+          <input  type="number" class="form-control" id="person_income" min="0" max="999999999999" name="person_income" placeholder=" Enter Your Annual Income" onkeydown="return event.key != 'Enter';" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" >Home Ownership</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="person_home_ownership" name="person_home_ownership" required>
+            <option selected="true" value="" disabled="disabled">-------------- Choose Your Home Ownership Status ------------</option>
+            <option value="OWN">Own</option>
+            <option value="MORTGAGE">Mortage</option>
+            <option value="RENT">Rent</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="person_emp_length">Employment Length</label>
+        <div class="col-sm-10">
+          <input  type="number" class="form-control" id="person_emp_length" min="0" max="100" name="person_emp_length" placeholder=" Enter Time In Years You're Employed" onkeydown="return event.key != 'Enter';">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Loan Intent</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="loan_intent" name="loan_intent" required>
+            <option selected="true" value="" disabled="disabled">-------------- Choose Your Loan Intention ------------</option>
+            <option value="EDUCATION">Education</option>
+            <option value="MEDICAL">Medical</option>
+            <option value="VENTURE">Venture</option>
+            <option value="PERSONAL">Personal</option>
+            <option value="DEBTCONSOLIDATION">Debt Consolidation</option>
+            <option value="HOMEIMPROVEMENT">Home Improvement</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Loan Grade</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="loan_grade" name="loan_grade" required>
+            <option selected="true" value="" disabled="disabled">-------------- Choose Your Loan Grade ------------</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" >Loan Amount</label>
+        <div class="col-sm-10">
+          <input type=number step="01" min="0" class="form-control" id="loan_amnt" name="loan_amnt" placeholder=" Enter Your Loan Amount" onkeydown="return event.key != 'Enter';" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" >Interest Rate</label>
+        <div class="col-sm-10">
+          <input type=number step="0.01" min="0" class="form-control" id="loan_int_rate" name="loan_int_rate" placeholder="Enter Interest Paid for the Loan" onkeydown="return event.key != 'Enter';" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" >Percent Income</label>
+        <div class="col-sm-10">
+          <input type=number step="0.0001" min="0.000000" max="1.000000" class="form-control" id="loan_percent_income" name="loan_percent_income" placeholder=" Loan Percent Income (Must be between 0 and 1)" onkeydown="return event.key != 'Enter';" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Historical Default</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="cb_person_default_on_file" name="cb_person_default_on_file" required>
+            <option selected="true" value="" disabled="disabled">-------------- Do You Have Default History? ------------</option>
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" >Credit History Length</label>
+        <div class="col-sm-10">
+          <input type="number" step="0.001" min="0"  class="form-control" id="cb_person_cred_hist_length" name="" placeholder=" Enter Your Credit Length History (in years)" onkeydown="return event.key != 'Enter';" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="button btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+  <div class="footer-copyright text-center py-3">
+    <div class="bottom">
+      <p><a href="#">Credit Risk Calculator 2021</a></p>
+    </div>
+  </div>
+</footer>
+<!-- Footer -->
+
+  </body>
+</html>
