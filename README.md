@@ -1,8 +1,8 @@
 
-### Request Headers:
+### Headers:
 - **Content-Type**: application/json
 
-### Body Params:
+### Body:
 Field | Description | Value | Required
 ------|-------------|-------|---------
 person_age | Age. | Integer | Yes
